@@ -9,7 +9,13 @@ do this remotely on another machine, and I'd like to see my changes when the
 generated image changes without having to switch to the browser and hit refresh
 every time. That annoys me enough to make this.
 
-## How to use it
+## Installation
+
+Check the releases page to get binaries directly for your OS.
+
+Will add a Docker version later if warranted.
+
+## Usage
 
 Host a specific image at `http://localhost:8083`:
 
