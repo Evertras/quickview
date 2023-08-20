@@ -27,7 +27,7 @@ func New(address, filename string) *Server {
 			// Figure out favicon later
 
 		default:
-			log.Println("Unknown route")
+			log.Println("ERROR: Unknown route")
 		}
 	}
 
