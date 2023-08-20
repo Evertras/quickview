@@ -19,7 +19,7 @@ func New(address, filename string) *Server {
 		case "/":
 			index(w, r)
 
-		case "/" + filename:
+		case "/item":
 			log.Println("Serving", filename)
 			http.ServeFile(w, r, filename)
 
