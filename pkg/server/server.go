@@ -10,8 +10,25 @@ type Server struct {
 }
 
 func New(address, filename string) *Server {
+	index := handlerIndex(filename)
+
 	mux := func(w http.ResponseWriter, r *http.Request) {
-		log.Println(r.RequestURI)
+		p := r.URL.Path
+		log.Println(p)
+		switch p {
+		case "/":
+			index(w, r)
+
+		case "/" + filename:
+			log.Println("Serving", filename)
+			http.ServeFile(w, r, filename)
+
+		case "/favicon.ico":
+			// Figure out favicon later
+
+		default:
+			log.Println("Unknown route")
+		}
 	}
 
 	s := &http.Server{

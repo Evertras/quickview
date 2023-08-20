@@ -1,5 +1,5 @@
 GO_FILES=$(shell find . -iname '*.go')
-bin/quickview: $(GO_FILES) .git/hooks/pre-commit
+bin/quickview: $(GO_FILES) ./pkg/server/templates/* .git/hooks/pre-commit
 	go build -o bin/quickview ./cmd/quickview/main.go
 
 # Format everything

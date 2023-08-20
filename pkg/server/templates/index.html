@@ -1,0 +1,10 @@
+<!doctype html>
+<html>
+  <header>
+    <title>QV {{ .Filename }}</title>
+  </header>
+
+  <body>
+    <img src="{{ .Filename }}?{{ .UnixNanoseconds }}" />
+  </body>
+</html>
