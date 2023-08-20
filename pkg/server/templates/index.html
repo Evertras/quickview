@@ -5,12 +5,13 @@
   </header>
 
   <body>
-    <img src="item?{{ .UnixNanoseconds }}" />
+    <img id="img" src="item?{{ .UnixNanoseconds }}" />
   </body>
 
   <script>
     const watchURL = "{{ .WebsocketURL }}";
     const socket = new WebSocket(watchURL);
+    const img = document.getElementById("img");
 
     console.log("Watching on", watchURL);
 
@@ -19,7 +20,8 @@
     };
 
     socket.onmessage = function (e) {
-      console.log(e.data);
+      console.log("Updating image to timestamp:", e.data);
+      img.src = "item?" + e.data;
     };
 
     socket.onclose = function (e) {
