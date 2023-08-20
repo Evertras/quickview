@@ -34,7 +34,7 @@ A long-running process that watches the target file for changes.
 
 ### Websocket handler
 
-A websocket handler that waits for messages from the file watcher at `/notify`
+A websocket handler that waits for messages from the file watcher at `/watch`
 
 ## Checkpoints
 
@@ -50,10 +50,10 @@ This is done when:
 
 ### Hot reload
 
-Add a websocket endpoint that occasionally emits a message to reload the page.
+Add a websocket endpoint that emits a message on file modifications to reload the image.
 
 This is done when:
 
-- [ ] The page opens a websocket connection successfully
-- [ ] The server emits some message on the websocket 1/sec
-- [ ] The page refreshes when it receives the message
+- [x] The page opens a websocket connection successfully
+- [x] The server emits an updated unix nano timestamp on the websocket when the file is updated
+- [x] The page updates the image source using the nano timestamp to reload the image
