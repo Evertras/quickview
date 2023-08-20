@@ -35,3 +35,15 @@ A long-running process that watches the target file for changes.
 ### Websocket handler
 
 A websocket handler that waits for messages from the file watcher at `/notify`
+
+## Checkpoints
+
+### Static serve
+
+Create a simple HTML page that shows the image statically. No hot reloading yet.
+
+This is done when:
+
+- `quickview <img>` starts a server
+- The page can be viewed from browser
+- The image is visible on the page
