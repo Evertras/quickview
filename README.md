@@ -7,7 +7,7 @@ A simple quick hot-reloading image viewer in the browser.
 I like to create diagrams using things like PlantUML and Mermaid. Sometimes I
 do this remotely on another machine, and I'd like to see my changes when the
 generated image changes without having to switch to the browser and hit refresh
-every time.  That annoys me enough to make this.
+every time. That annoys me enough to make this.
 
 ## How to use it
 
