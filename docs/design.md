@@ -44,6 +44,6 @@ Create a simple HTML page that shows the image statically. No hot reloading yet.
 
 This is done when:
 
-[x] `quickview <img>` starts a server
-[x] The page can be viewed from browser
-[x] The image is visible on the page
+- [x] `quickview <img>` starts a server
+- [x] The page can be viewed from browser
+- [x] The image is visible on the page
