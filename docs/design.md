@@ -47,3 +47,13 @@ This is done when:
 - [x] `quickview <img>` starts a server
 - [x] The page can be viewed from browser
 - [x] The image is visible on the page
+
+### Hot reload
+
+Add a websocket endpoint that occasionally emits a message to reload the page.
+
+This is done when:
+
+- [ ] The page opens a websocket connection successfully
+- [ ] The server emits some message on the websocket 1/sec
+- [ ] The page refreshes when it receives the message
