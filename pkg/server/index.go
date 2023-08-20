@@ -14,9 +14,14 @@ var indexTemplateRaw string
 
 var indexTemplate = template.Must(template.New("index").Parse(indexTemplateRaw))
 
-func handlerIndex(filename string) http.HandlerFunc {
+type indexData struct {
+	filename     string
+	websocketURL string
+}
+
+func handlerIndex(data indexData) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		stat, err := os.Stat(filename)
+		stat, err := os.Stat(data.filename)
 
 		if err != nil {
 			log.Println("ERROR FILE STAT:", err)
@@ -24,15 +29,17 @@ func handlerIndex(filename string) http.HandlerFunc {
 			return
 		}
 
-		data := struct {
+		d := struct {
 			Filename        string
 			UnixNanoseconds int64
+			WebsocketURL    string
 		}{
-			Filename:        filename,
+			Filename:        data.filename,
 			UnixNanoseconds: stat.ModTime().UnixNano(),
+			WebsocketURL:    data.websocketURL,
 		}
 
-		err = indexTemplate.Execute(w, data)
+		err = indexTemplate.Execute(w, d)
 
 		if err != nil {
 			log.Println("ERROR RENDERING INDEX:", err)

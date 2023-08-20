@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -10,11 +11,16 @@ type Server struct {
 }
 
 func New(address, filename string) *Server {
-	index := handlerIndex(filename)
+	index := handlerIndex(indexData{
+		filename:     filename,
+		websocketURL: fmt.Sprintf("ws://%s/watch", address),
+	})
+	watcher := handlerWatcher(filename)
 
 	mux := func(w http.ResponseWriter, r *http.Request) {
 		p := r.URL.Path
 		log.Println(p)
+
 		switch p {
 		case "/":
 			index(w, r)
@@ -25,6 +31,9 @@ func New(address, filename string) *Server {
 
 		case "/favicon.ico":
 			// Figure out favicon later
+
+		case "/watch":
+			watcher.ServeHTTP(w, r)
 
 		default:
 			log.Println("ERROR: Unknown route")
