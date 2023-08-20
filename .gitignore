@@ -1,0 +1,5 @@
+# Local env vars with direnv
+.envrc
+
+# Built binaries
+bin
