@@ -6,3 +6,6 @@ bin
 
 # Node modules from prettier
 node_modules
+
+# Goreleaser builds here
+dist/
