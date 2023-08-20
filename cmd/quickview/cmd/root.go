@@ -3,7 +3,12 @@ package cmd
 import (
 	"github.com/Evertras/quickview/pkg/server"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
+
+func Execute() error {
+	return rootCmd.Execute()
+}
 
 var rootCmd = &cobra.Command{
 	Use:   "quickview filename",
@@ -16,12 +21,18 @@ var rootCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		filename := args[0]
 
-		s := server.New("localhost:8083", filename)
+		s := server.New(config.Address, filename)
 
 		return s.ListenAndServe()
 	},
 }
 
-func Execute() error {
-	return rootCmd.Execute()
+func init() {
+	rootCmd.Flags().StringP(configKeyAddress, "a", "localhost:8386", "The address to host on.")
+
+	err := viper.BindPFlags(rootCmd.Flags())
+
+	if err != nil {
+		panic(err)
+	}
 }
