@@ -13,6 +13,6 @@ node_modules: package.json package-lock.json
 	npm install
 
 # Run prettier on pre-commit
-.git/hooks/pre-commit:
+.git/hooks/pre-commit: node_modules
 	cp .evertras/pre-commit.sh .git/hooks/pre-commit
 	chmod +x .git/hooks/pre-commit
