@@ -1,8 +1,28 @@
 <!doctype html>
 <html>
-  <header>
+  <head>
     <title>QV {{ .Filename }}</title>
-  </header>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background-color: #888;
+      }
+
+      img {
+        display: block;
+        margin: 0 auto;
+        max-height: 100%;
+        max-width: 100%;
+      }
+    </style>
+  </head>
 
   <body>
     <img id="img" src="item?{{ .UnixNanoseconds }}" />
