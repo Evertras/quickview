@@ -41,11 +41,6 @@
       };
 
       socket.onmessage = function (e) {
-        if (e.data === "__pong__") {
-          pong();
-          return;
-        }
-
         console.log("Updating image to timestamp:", e.data);
         img.src = "item?" + e.data;
       };
