@@ -13,8 +13,6 @@ func handlerWatcher(filename string) http.Handler {
 	return websocket.Handler(func(ws *websocket.Conn) {
 		log.Println("Opened connection")
 
-		log.Printf("%+v", ws.Request().Header)
-
 		// Create a separate watcher for each instance, so that
 		// we can freely pull from the channel
 		fileWatcher, err := watcher.New(filename)
