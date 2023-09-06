@@ -29,34 +29,39 @@
   </body>
 
   <script>
-    const watchURL = "{{ .WebsocketURL }}";
-    const socket = new WebSocket(watchURL);
-    const img = document.getElementById("img");
+    function connect() {
+      const watchURL = "{{ .WebsocketURL }}";
+      const socket = new WebSocket(watchURL);
+      const img = document.getElementById("img");
 
-    console.log("Watching on", watchURL);
+      console.log("Watching on", watchURL);
 
-    socket.onopen = function (e) {
-      console.log("Connection established");
-    };
+      socket.onopen = function (e) {
+        console.log("Connection established");
+      };
 
-    socket.onmessage = function (e) {
-      console.log("Updating image to timestamp:", e.data);
-      img.src = "item?" + e.data;
-    };
+      socket.onmessage = function (e) {
+        console.log("Updating image to timestamp:", e.data);
+        img.src = "item?" + e.data;
+      };
 
-    socket.onclose = function (e) {
-      if (e.wasClean) {
-        // TODO: What to do here?  Reconnect to handle server restarts?
-        console.log("Connection closed cleanly");
-      } else {
-        console.error("Connection closed");
+      socket.onclose = function (e) {
+        if (e.wasClean) {
+          // TODO: What to do here?  Reconnect to handle server restarts?
+          console.log("Connection closed cleanly");
+        } else {
+          console.error("Connection closed");
+          console.error(e);
+          connect();
+        }
+      };
+
+      socket.onerror = function (e) {
+        console.error("Connection error");
         console.error(e);
-      }
-    };
+      };
+    }
 
-    socket.onerror = function (e) {
-      console.error("Connection error");
-      console.error(e);
-    };
+    connect();
   </script>
 </html>
